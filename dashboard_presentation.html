@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO-IMPLEMENTATION GEOGLOWS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a365d',
+                        secondary: '#2b6cb0',
+                        accent: '#3182ce',F
+                        water: '#4299e1',F
+                        background: '#ebf8ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+        .data-table {
+            width: 100%;
+            overflow-x: auto;
+        }
+        .water-wave {
+            position: relative;
+            overflow: hidden;
+        }
+        .water-wave::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(66, 153, 225, 0.1) 0%, rgba(66, 153, 225, 0.3) 100%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-blue-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header with water theme -->
+        <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white rounded-xl shadow-lg p-6 mb-8 water-wave">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">CO-IMPLEMENTATION GEOGLOWS</h1>
+                    <p class="text-blue-100">Central America</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <a href="https://social-impactgeoglowsdocs--1.org.readthedocs.build/en/1/model/" target="_blank" class="flex items-center space-x-2 bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                        <i class="fas fa-tint text-2xl text-white"></i>
+                        <span class="font-semibold text-white">Social Impact Model</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+
+
+
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Summary of Co-Implementation</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-red-800 mb-2 flex items-center">
+                            <span class="impact-badge impact-high mr-2"></span>Active Engagement
+                        </h3>
+                        <p class="text-gray-700">GEOGLOWS significantly improves capability</p>
+                        <ul class="mt-2 space-y-1">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                Honduras
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                Belize
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-yellow-800 mb-2 flex items-center">
+                            <span class="impact-badge impact-medium mr-2"></span>Active engagement
+                        </h3>
+                        <p class="text-gray-700">GEOGLOWS for developing use cases</p>
+                        <ul class="mt-2 space-y-1">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                Panama
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                El Salvador
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+                                Nicaragua
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2 flex items-center">
+                            <span class="impact-badge impact-low mr-2"></span>Operational Either Way
+                        </h3>
+                        <p class="text-gray-700">Pasive engagement</p>
+                        <ul class="mt-2 space-y-1">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Guatemala
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Costa Rica
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Country Cards -->
+  <!-- Country Hydrological Profiles -->
+<section>
+  <h2 class="text-2xl font-bold mb-6 text-primary">Country Hydrological Profiles</h2>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white rounded-lg shadow-md p-6 flex items-center border-l-4 border-blue-500">
+      <div class="bg-blue-100 p-3 rounded-full mr-4">
+        <i class="fas fa-water text-blue-600 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-gray-500">Total Hydrological Stations</p>
+        <h3 class="text-2xl font-bold">12,222</h3>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6 flex items-center border-l-4 border-green-500">
+      <div class="bg-green-100 p-3 rounded-full mr-4">
+        <i class="fas fa-user-tie text-green-600 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-gray-500">Total Hydrology Workers</p>
+        <h3 class="text-2xl font-bold">41</h3>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6 flex items-center border-l-4 border-purple-500">
+      <div class="bg-purple-100 p-3 rounded-full mr-4">
+        <i class="fas fa-map-marked-alt text-purple-600 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-gray-500">Average Stations Density</p>
+        <h3 class="text-2xl font-bold">0.82/1000 km²</h3>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6 flex items-center border-l-4 border-yellow-500">
+      <div class="bg-yellow-100 p-3 rounded-full mr-4">
+        <i class="fas fa-flag text-yellow-600 text-xl"></i>
+      </div>
+      <div>
+        <p class="text-gray-500">Best Coverage</p>
+        <h3 class="text-2xl font-bold">Costa Rica</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+            <!-- Costa Rica -->
+            <div class="country-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                <div class="bg-blue-600 p-4 text-gray-800 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-bold">Costa Rica</h3>
+                        <p class="text-blue-200">ICE</p>
+                    </div>
+                    <div class="bg-blue-700 px-3 py-1 rounded-full text-sm">
+                        <i class="fas fa-trophy mr-1"></i> Best Coverage
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tie text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">NHS Workers:</span>
+                        </div>
+                        <span class="font-semibold">No report</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-water text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">Hydrological Stations:</span>
+                        </div>
+                        <span class="font-semibold">100</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-blue-500 mr-2"></i>
+                            <span class="text-gray-600">Stations Density:</span>
+                        </div>
+                        <span class="font-semibold">1.96/1000 km²</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Station density compared to regional average</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Honduras -->
+            <div class="country-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                <div class="bg-green-600 p-4 text-gray-800">
+                    <h3 class="text-xl font-bold">Honduras</h3>
+                    <p class="text-green-200">ENEE</p>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tie text-green-500 mr-2"></i>
+                            <span class="text-gray-600">NHS Workers:</span>
+                        </div>
+                        <span class="font-semibold">12</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-water text-green-500 mr-2"></i>
+                            <span class="text-gray-600">Hydrological Stations:</span>
+                        </div>
+                        <span class="font-semibold">6</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-green-500 mr-2"></i>
+                            <span class="text-gray-600">Stations Density:</span>
+                        </div>
+                        <span class="font-semibold">0.05/1000 km²</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-green-600 h-2.5 rounded-full" style="width: 3%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Station density compared to regional average</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panama -->
+            <div class="country-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                <div class="bg-red-600 p-4 text-gray-800">
+                    <h3 class="text-xl font-bold">Panamá</h3>
+                    <p class="text-red-200">IMHPA</p>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tie text-red-500 mr-2"></i>
+                            <span class="text-gray-600">NHS Workers:</span>
+                        </div>
+                        <span class="font-semibold">7</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-water text-red-500 mr-2"></i>
+                            <span class="text-gray-600">Hydrological Stations:</span>
+                        </div>
+                        <span class="font-semibold">60</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-red-500 mr-2"></i>
+                            <span class="text-gray-600">Stations Density:</span>
+                        </div>
+                        <span class="font-semibold">0.80/1000 km²</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-red-600 h-2.5 rounded-full" style="width: 41%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Station density compared to regional average</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guatemala -->
+            <div class="country-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                <div class="bg-purple-600 p-4 text-gray-800">
+                    <h3 class="text-xl font-bold">Guatemala</h3>
+                    <p class="text-purple-200">INSIVUMEH</p>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tie text-purple-500 mr-2"></i>
+                            <span class="text-gray-600">NHS Workers:</span>
+                        </div>
+                        <span class="font-semibold">7</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-water text-purple-500 mr-2"></i>
+                            <span class="text-gray-600">Hydrological Stations:</span>
+                        </div>
+                        <span class="font-semibold">65</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-purple-500 mr-2"></i>
+                            <span class="text-gray-600">Stations Density:</span>
+                        </div>
+                        <span class="font-semibold">0.60/1000 km²</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-purple-600 h-2.5 rounded-full" style="width: 31%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Station density compared to regional average</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nicaragua -->
+            <div class="country-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                <div class="bg-yellow-600 p-4 text-gray-800">
+                    <h3 class="text-xl font-bold">Nicaragua</h3>
+                    <p class="text-yellow-300">INETER</p>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tie text-yellow-500 mr-2"></i>
+                            <span class="text-gray-600">NHS Workers:</span>
+                        </div>
+                        <span class="font-semibold">6</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-water text-yellow-500 mr-2"></i>
+                            <span class="text-gray-600">Hydrological Stations:</span>
+                        </div>
+                        <span class="font-semibold">40</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-yellow-500 mr-2"></i>
+                            <span class="text-gray-600">Stations Density:</span>
+                        </div>
+                        <span class="font-semibold">0.31/1000 km²</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 16%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Station density compared to regional average</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- El Salvador -->
+            <div class="country-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                <div class="bg-pink-600 p-4 text-gray-800">
+                    <h3 class="text-xl font-bold">El Salvador</h3>
+                    <p class="text-pink-200">MARN</p>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-tie text-pink-500 mr-2"></i>
+                            <span class="text-gray-600">NHS Workers:</span>
+                        </div>
+                        <span class="font-semibold">6</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-water text-pink-500 mr-2"></i>
+                            <span class="text-gray-600">Hydrological Stations:</span>
+                        </div>
+                        <span class="font-semibold">36</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marked-alt text-pink-500 mr-2"></i>
+                            <span class="text-gray-600">Stations Density:</span>
+                        </div>
+                        <span class="font-semibold">1.71/1000 km²</span>
+                    </div>
+                    <div class="mt-4 pt-3 border-t">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-pink-600 h-2.5 rounded-full" style="width: 87%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Station density compared to regional average</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+  <!-- Search and Filter Controls -->
+  <div class="mb-6 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
+    <div class="w-full md:w-1/3">
+      <label for="ratingFilter" class="block text-sm font-medium text-gray-700 mb-1">Filter by Coverage Rating:</label>
+      <select id="ratingFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="all">Show All</option>
+        <option value="Excellent">Excellent</option>
+        <option value="Good">Good</option>
+        <option value="Moderate">Moderate</option>
+        <option value="Low">Low</option>
+        <option value="Very Low">Very Low</option>
+      </select>
+    </div>
+    <div class="w-full md:w-1/3">
+      <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-1">Search by Country:</label>
+      <input type="text" id="searchInput" placeholder="e.g. Guatemala" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+  </div>
+
+  <!-- Cards Container -->
+  <div class="space-y-4" id="cardContainer">
+
+    <!-- Costa Rica - Excellent -->
+    <details class="group bg-white border border-green-400 rounded-lg shadow-md shadow-green-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-green-600"></i>
+          <span>Costa Rica - ICE</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Excellent</p>
+        <p><strong>Population:</strong> 5,212,173</p>
+        <p><strong>Surface Area:</strong> 51,100 sq km</p>
+        <p><strong>Climate:</strong> Tropical and subtropical</p>
+        <p><strong>Major Industries:</strong> Medical equipment, food processing, textiles and clothing, construction materials, fertilizer, plastic products</p>
+        <p><strong>Total Events (2015–2025):</strong> 17</p>
+        <p><strong>No. Injured:</strong> 40</p>
+        <p><strong>No. Affected:</strong> 351,542</p>
+        <p><strong>Total Deaths:</strong> 81</p>
+      </div>
+    </details>
+
+    <!-- Honduras - Very Low -->
+    <details class="group bg-white border border-red-400 rounded-lg shadow-md shadow-red-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-red-600"></i>
+          <span>Honduras - ENEE</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Very Low</p>
+        <p><strong>Population:</strong> 10,593,798</p>
+        <p><strong>Surface Area:</strong> 112,492 sq km</p>
+        <p><strong>Climate:</strong> Subtropical in lowlands</p>
+        <p><strong>Major Industries:</strong> Sugar processing, coffee, woven and knit apparel, wood products, cigars</p>
+        <p><strong>Total Events (2015–2025):</strong> 12</p>
+        <p><strong>No. Injured:</strong> 17</p>
+        <p><strong>No. Affected:</strong> 432,068</p>
+        <p><strong>Total Deaths:</strong> 263</p>
+      </div>
+    </details>
+
+    <!-- Panama - Moderate -->
+    <details class="group bg-white border border-yellow-400 rounded-lg shadow-md shadow-yellow-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-yellow-400"></i>
+          <span>Panama - IMHPA</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Moderate </p>
+        <p><strong>Population:</strong> 4'468,087</p>
+        <p><strong>Surface Area:</strong> 75,420 sq km</p>
+        <p><strong>Climate:</strong> Tropical Maritime</p>
+        <p><strong>Major Industries:</strong> Construction, brewing, cement and other construction materials, sugar milling</p>
+        <p><strong>Total Events (2015–2025):</strong> 14</p>
+        <p><strong>No. Injured:</strong> 336</p>
+        <p><strong>No. Affected:</strong> NA</p>
+        <p><strong>Total Deaths:</strong> 74</p>
+      </div>
+    </details>
+ 
+    <!-- Guatemala - Moderate -->
+    <details class="group bg-white border border-yellow-400 rounded-lg shadow-md shadow-yellow-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-yellow-300"></i>
+          <span>Guatemala - INSIVUMEH</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Moderate </p>
+        <p><strong>Population:</strong> 18'092,026 </p>
+        <p><strong>Surface Area:</strong> 108,889 sq km</p>
+        <p><strong>Climate:</strong> Tropical</p>
+        <p><strong>Major Industries:</strong> Sugar, textiles and clothing, furniture, chemicals, petroleum, metals, rubber, tourism</p>
+        <p><strong>Total Events (2015–2025):</strong> 16</p>
+        <p><strong>No. Injured:</strong> 54</p>
+        <p><strong>No. Affected:</strong> 994221 </p>
+        <p><strong>Total Deaths:</strong> 145 </p>
+      </div>
+    </details>
+
+
+    <!-- Nicaragua - Low -->
+    <details class="group bg-white border border-orange-400 rounded-lg shadow-md shadow-orange-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-orange-200"></i>
+          <span>Nicaragua - INETER</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Low</p>
+        <p><strong>Population:</strong> 7'046,311 </p>
+        <p><strong>Surface Area:</strong> 130,373 sq km</p>
+        <p><strong>Climate:</strong> Tropical in lowlands, cooler in highlands </p>
+        <p><strong>Major Industries:</strong> Food processing, chemicals, machinery and metal products, knit and woven apparel, petroleum refining and distribution, beverages, footwear, wood, electric wire harness manufacturing, mining</p>
+        <p><strong>Total Events (2015–2025):</strong> 22</p>
+        <p><strong>No. Injured:</strong> 18</p>
+        <p><strong>No. Affected:</strong> 387,719</p>
+        <p><strong>Total Deaths:</strong> 148 </p>
+      </div>
+    </details>
+
+
+    <!-- El Salvador - Excellent -->
+    <details class="group bg-white border border-green-400 rounded-lg shadow-md 	shadow-green-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-green-200"></i>
+          <span>El Salvador - MARN</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Excellent </p>
+        <p><strong>Population:</strong> 6'364,943 </p>
+        <p><strong>Surface Area:</strong> 21,041 sq km</p>
+        <p><strong>Climate:</strong> Tropical  </p>
+        <p><strong>Major Industries:</strong> food processing, beverages, petroleum, chemicals, fertilizer, textiles, furniture, light metals</p>
+        <p><strong>Total Events (2015–2025):</strong> 9</p>
+        <p><strong>No. Injured:</strong> 0</p>
+        <p><strong>No. Affected:</strong> 306,332</p>
+        <p><strong>Total Deaths:</strong> 119 </p>
+      </div>
+    </details>
+
+
+
+    <!-- Belize - Good -->
+    <details class="group bg-white border border-red-400 rounded-lg shadow-md shadow-red-100 p-4 open:shadow-lg transition-all">
+      <summary class="flex items-center justify-between cursor-pointer font-semibold text-blue-700">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-flag text-emerald-400"></i>
+          <span>Belize - MNR</span>
+        </div>
+        <i class="fas fa-chevron-right text-gray-500 group-open:rotate-90 transform transition-transform"></i>
+      </summary>
+      <div class="mt-4 text-gray-700 text-sm">
+        <p><strong>Coverage Rating:</strong> Good </p>
+        <p><strong>Population:</strong> 6'364,943 </p>
+        <p><strong>Surface Area:</strong> 21,041 sq km</p>
+        <p><strong>Climate:</strong> Tropical  </p>
+        <p><strong>Major Industries:</strong> Garment production, food processing, tourism, construction, oil</p>
+        <p><strong>Total Events (2015–2025):</strong> 1</p>
+        <p><strong>No. Injured:</strong> 0</p>
+        <p><strong>No. Affected:</strong> 38,000 </p>
+        <p><strong>Total Deaths:</strong> 1 </p>
+      </div>
+    </details>
+
+
+  </div>
+
+
+       <!-- SWOT Analysis Section -->
+        <h2 class="text-2xl font-bold mb-6 text-primary">Hydrological SWOT Analysis</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Strengths -->
+            <div class="swot-card bg-green-50 rounded-lg shadow-md p-6 border-l-4 border-strength">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-thumbs-up text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-800">Strengths</h3>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>GEOGLOWS services (Hydroviewer, Hydroserver, Flood Maps, Groundwater) are valuable for water management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Models like HBV-Light and HEC-HMS already in use for hydrological modeling in some countries</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Operational hydrological and meteorological stations across countries</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Data sharing agreement among NHS to improve GEOGLOWS River Forecasting System </span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Long term record data: 25-50 year historical streamflow and water level</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Institutional priorities for improving early warning systems and water management</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Weaknesses -->
+            <div class="swot-card bg-red-50 rounded-lg shadow-md p-6 border-l-4 border-weakness">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-thumbs-down text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-red-800">Weaknesses</h3>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <span>Limited groundwater level historical data (1-25 years) with inconsistent records only in few countries</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <span>Small modeling teams (3-7 people) leading to overwork and limited scalability</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <span>Lack of expertise in advanced modeling and data integration techniques</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <span>Gaps in database systems and lack of centralized platforms for data access</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <span>Poor station maintenance reducing real-time data reliability</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times-circle text-red-500 mt-1 mr-2"></i>
+                        <span>Undefined budgets for hydrological monitoring in many institutions</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Opportunities -->
+            <div class="swot-card bg-yellow-50 rounded-lg shadow-md p-6 border-l-4 border-opportunity">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-bullseye text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-yellow-800">Opportunities</h3>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-arrow-circle-up text-yellow-500 mt-1 mr-2"></i>
+                        <span>Training programs to upskill personnel in modeling and database management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-arrow-circle-up text-yellow-500 mt-1 mr-2"></i>
+                        <span>Increased GEOGLOWS adoption through workshops and demonstration projects</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-arrow-circle-up text-yellow-500 mt-1 mr-2"></i>
+                        <span>Expanding GEOGLOWS for real-time monitoring, flood mapping, and bias correction</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-arrow-circle-up text-yellow-500 mt-1 mr-2"></i>
+                        <span>Strengthening partnerships with international organizations for support</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-arrow-circle-up text-yellow-500 mt-1 mr-2"></i>
+                        <span>Open to collaboration after october, NHS will check the budget</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-arrow-circle-up text-yellow-500 mt-1 mr-2"></i>
+                        <span>Upgrading hydrometeorological stations for consistent data</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Threats -->
+            <div class="swot-card bg-purple-50 rounded-lg shadow-md p-6 border-l-4 border-threat">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-exclamation-triangle text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">Threats</h3>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-purple-500 mt-1 mr-2"></i>
+                        <span>Inadequate financial resources for maintenance and technology adoption</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-purple-500 mt-1 mr-2"></i>
+                        <span>Funding delays impacting NHS</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-purple-500 mt-1 mr-2"></i>
+                        <span>Challenges integrating GEOGLOWS with existing systems</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-purple-500 mt-1 mr-2"></i>
+                        <span>Dependence on external expertise for technical issues</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-purple-500 mt-1 mr-2"></i>
+                        <span> GEOGLOWS Version Updates to track events during rainy season</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-purple-500 mt-1 mr-2"></i>
+                        <span>Resistance to adopting new tools due to lack of awareness</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    <!-- Country Impact -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Country Impact Index</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-blue-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold mr-4">
+                            100
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Nicaragua</h3>
+                    </div>
+                    <p class="text-gray-600">GEOGLOWS is vital for groundwater management. It has limited hydrological stations</p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-green-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xl font-bold mr-4">
+                            100
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">El Salvador</h3>
+                    </div>
+                    <p class="text-gray-600">Good station network but benefits from GEOGLOWS reliability</p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-purple-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-xl font-bold mr-4">
+                            100
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Panamá</h3>
+                    </div>
+                    <p class="text-gray-600">Moderate hydrological stations coverage with useful applications </p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-yellow-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-xl font-bold mr-4">
+                            80
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Belize</h3>
+                    </div>
+                    <p class="text-gray-600">Good coverage  with GEOGLOWS providing extra support</p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-red-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-xl font-bold mr-4">
+                            75
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Honduras</h3>
+                    </div>
+                    <p class="text-gray-600">Extremely low station density, GEOGLOWS fills critical gaps</p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-indigo-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xl font-bold mr-4">
+                            60
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Costa Rica</h3>
+                    </div>
+                    <p class="text-gray-600">Best coverage with GEOGLOWS enhancing existing systems</p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-pink-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-xl font-bold mr-4">
+                            60
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Guatemala</h3>
+                    </div>
+                    <p class="text-gray-600">Some stations but GEOGLOWS boosts early warnings</p>
+                </div>
+                <div class="country-card bg-white rounded-lg shadow p-6 border-l-gray-500 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="text-gray-500 text-4xl mb-2">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Impact Measurement</h3>
+                        <p class="text-sm text-gray-600">Based on Engagement, Data Integration, Capacity Building, and Stakeholder Collaboration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+<!-- Disaster Statistics -->
+
+    <title>Central America Disaster Statistics Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .data-table th {
+            background-color: #f7fafc;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .data-table tr:hover {
+            background-color: #f8fafc;
+        }
+        .filter-btn.active {
+            background-color: #4299e1;
+            color: white;
+        }
+        .country-flag {
+            width: 24px;
+            height: 16px;
+            margin-right: 8px;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .disaster-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        .disaster-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl font-bold text-blue-900 mb-2">Central America Disaster Statistics Dashboard</h1>
+            <p class="text-xl text-gray-600">Projected Data for Floods and Droughts (2015-2025)</p>
+            <div class="mt-6">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full mr-2">
+                    <i class="fas fa-water mr-1"></i> Flood Data
+                </span>
+                <span class="inline-block bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full mr-2">
+                    <i class="fas fa-sun mr-1"></i> Drought Data
+                </span>
+                <span class="inline-block bg-red-100 text-red-800 text-sm px-3 py-1 rounded-full">
+                    <i class="fas fa-chart-line mr-1"></i> Historical Trends
+                </span>
+            </div>
+            <p class="mt-4 text-gray-500 max-w-3xl mx-auto">
+                This dashboard presents projected disaster statistics for Central American countries from 2015 to 2025 for floods and droughts. 
+                Reference: Centre for Research on the Epidemiology of Disasters (CRED). "NA" values indicate data not available or not applicable.
+            </p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="flex overflow-x-auto mb-8 bg-white rounded-lg shadow-sm">
+            <button class="tab-button px-6 py-3 font-medium text-gray-600 active" data-tab="floods">
+                <i class="fas fa-water mr-2"></i>Floods
+            </button>
+            <button class="tab-button px-6 py-3 font-medium text-gray-600" data-tab="droughts">
+                <i class="fas fa-sun mr-2"></i>Droughts
+            </button>
+            <button class="tab-button px-6 py-3 font-medium text-gray-600" data-tab="historical">
+                <i class="fas fa-history mr-2"></i>Historical Events
+            </button>
+        </div>
+
+        <!-- Floods Tab Content -->
+        <div id="floods-tab" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
+                            <i class="fas fa-bolt text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Total Flood Events</p>
+                            <h3 class="text-2xl font-bold">91</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Across all countries (2015-2025)</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
+                            <i class="fas fa-skull-crossbones text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Total Deaths</p>
+                            <h3 class="text-2xl font-bold">831</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Projected fatalities from floods</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mr-4">
+                            <i class="fas fa-user-injured text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Total Injured</p>
+                            <h3 class="text-2xl font-bold">465</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Reported injuries from floods</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-green-100 text-green-600 mr-4">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Total Affected</p>
+                            <h3 class="text-2xl font-bold">2.5M+</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">People impacted by floods</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Flood Impact by Country (2015-2025)</h2>
+                    <div class="flex space-x-2">
+                        <button class="filter-btn px-4 py-2 rounded-lg bg-gray-100 text-gray-700 active" data-metric="events">
+                            <i class="fas fa-bolt mr-2"></i>Events
+                        </button>
+                        <button class="filter-btn px-4 py-2 rounded-lg bg-gray-100 text-gray-700" data-metric="deaths">
+                            <i class="fas fa-skull-crossbones mr-2"></i>Deaths
+                        </button>
+                        <button class="filter-btn px-4 py-2 rounded-lg bg-gray-100 text-gray-700" data-metric="affected">
+                            <i class="fas fa-users mr-2"></i>Affected
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="floodChart"></canvas>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Deaths vs. Affected Population</h2>
+                    <div class="chart-container">
+                        <canvas id="floodScatterChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Flood Events Distribution</h2>
+                    <div class="chart-container">
+                        <canvas id="floodPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10 overflow-x-auto">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Complete Flood Data by Country (2015-2025)</h2>
+                <table class="data-table w-full">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Total Events</th>
+                            <th>Injured</th>
+                            <th>Affected</th>
+                            <th>Total Deaths</th>
+                            <th>Population</th>
+                            <th>Fatality Rate (per million)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/cr.png" alt="Costa Rica" class="country-flag">
+                                Costa Rica
+                            </td>
+                            <td>17</td>
+                            <td>40</td>
+                            <td>351,542</td>
+                            <td>81</td>
+                            <td>5,212,173</td>
+                            <td>230.41</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/hn.png" alt="Honduras" class="country-flag">
+                                Honduras
+                            </td>
+                            <td>12</td>
+                            <td>17</td>
+                            <td>432,068</td>
+                            <td>263</td>
+                            <td>10,593,798</td>
+                            <td>608.70</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/pa.png" alt="Panamá" class="country-flag">
+                                Panamá
+                            </td>
+                            <td>14</td>
+                            <td>336</td>
+                            <td>NA</td>
+                            <td>74</td>
+                            <td>4,468,087</td>
+                            <td>NA</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/gt.png" alt="Guatemala" class="country-flag">
+                                Guatemala
+                            </td>
+                            <td>16</td>
+                            <td>54</td>
+                            <td>994,221</td>
+                            <td>145</td>
+                            <td>18,092,026</td>
+                            <td>145.84</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/ni.png" alt="Nicaragua" class="country-flag">
+                                Nicaragua
+                            </td>
+                            <td>22</td>
+                            <td>18</td>
+                            <td>387,719</td>
+                            <td>148</td>
+                            <td>7,046,311</td>
+                            <td>381.72</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/sv.png" alt="El Salvador" class="country-flag">
+                                El Salvador
+                            </td>
+                            <td>9</td>
+                            <td>0</td>
+                            <td>306,332</td>
+                            <td>119</td>
+                            <td>6,364,943</td>
+                            <td>388.47</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/bz.png" alt="Belize" class="country-flag">
+                                Belize
+                            </td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>38,000</td>
+                            <td>1</td>
+                            <td>410,825</td>
+                            <td>26.32</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-blue-50 rounded-xl shadow-inner p-6">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4">Key Insights</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <div class="flex items-start mb-3">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fas fa-lightbulb text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Highest Affected Population</h3>
+                                <p class="text-gray-700">Guatemala has the highest affected population at nearly 1 million people from floods.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-3">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fas fa-lightbulb text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Highest Death Count</h3>
+                                <p class="text-gray-700">Honduras has the highest death count (263) despite fewer flood events (12).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-start mb-3">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fas fa-lightbulb text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Most Disaster Events</h3>
+                                <p class="text-gray-700">Nicaragua has the most flood events recorded (22) among all countries.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fas fa-lightbulb text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Highest Fatality Rate</h3>
+                                <p class="text-gray-700">Honduras has the highest fatality rate at 608.70 deaths per million population.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Droughts Tab Content -->
+        <div id="droughts-tab" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Major Drought Events Timeline</h2>
+                
+                <div class="disaster-timeline">
+                    <div class="timeline-item">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">2001</h3>
+                        <p class="text-gray-700">Multiple drought events recorded in Honduras, Nicaragua, and El Salvador</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">2015–2016</h3>
+                        <p class="text-gray-700">Widespread droughts or food shortages across Central America affecting multiple countries</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">2018–2019</h3>
+                        <p class="text-gray-700">Many El Niño-related drought events recorded in multiple countries</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Top 5 Drought Events by Affected Population</h2>
+                <table class="data-table w-full">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Year</th>
+                            <th>Event Type</th>
+                            <th>Total Affected</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/gt.png" alt="Guatemala" class="country-flag">
+                                Guatemala
+                            </td>
+                            <td>2009</td>
+                            <td>El Niño (Food shortage)</td>
+                            <td>2,500,000</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/hn.png" alt="Honduras" class="country-flag">
+                                Honduras
+                            </td>
+                            <td>2014–2015</td>
+                            <td>Food shortage</td>
+                            <td>2,023,000</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/gt.png" alt="Guatemala" class="country-flag">
+                                Guatemala
+                            </td>
+                            <td>2014–2016</td>
+                            <td>Unspecified</td>
+                            <td>1,300,000</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/gt.png" alt="Guatemala" class="country-flag">
+                                Guatemala
+                            </td>
+                            <td>2018–2019</td>
+                            <td>Unspecified</td>
+                            <td>1,500,000</td>
+                        </tr>
+                        <tr>
+                            <td class="flex items-center">
+                                <img src="https://flagcdn.com/w20/cr.png" alt="Costa Rica" class="country-flag">
+                                Costa Rica
+                            </td>
+                            <td>2019</td>
+                            <td>El Niño (unspecified)</td>
+                            <td>1,500,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Notable Drought Fatalities</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-red-800 mb-2">Guatemala (2001)</h3>
+                        <p class="text-gray-700">41 deaths related to famine caused by drought conditions.</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-yellow-800 mb-2">Regional Impact</h3>
+                        <p class="text-gray-700">Droughts often have cascading effects leading to food shortages and malnutrition across multiple countries simultaneously.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historical Tab Content -->
+        <div id="historical-tab" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Historical Trends Analysis</h2>
+                <div class="chart-container">
+                    <canvas id="historicalTrendsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Comparative Analysis</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-3">Floods vs. Droughts</h3>
+                        <p class="text-gray-700 mb-4">
+                            While floods tend to cause more immediate fatalities and injuries, droughts have a more widespread and long-term impact on populations, particularly through food insecurity.
+                        </p>
+                        <p class="text-gray-700">
+                            Guatemala appears particularly vulnerable to both types of disasters, ranking high in both flood-affected populations and drought impacts.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-3">Regional Patterns</h3>
+                        <p class="text-gray-700 mb-4">
+                            The data shows that drought events often affect multiple countries simultaneously, particularly during El Niño years, while flood events tend to be more localized.
+                        </p>
+                        <p class="text-gray-700">
+                            Honduras stands out with an unusually high flood fatality rate compared to its neighbors, suggesting potential differences in preparedness or vulnerability factors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Flood Data
+        const floodData = [
+            { 
+                country: "Costa Rica", 
+                events: 17, 
+                injured: 40, 
+                affected: 351542, 
+                deaths: 81,
+                population: 5212173,
+                flag: "https://flagcdn.com/w20/cr.png"
+            },
+            { 
+                country: "Honduras", 
+                events: 12, 
+                injured: 17, 
+                affected: 432068, 
+                deaths: 263,
+                population: 10593798,
+                flag: "https://flagcdn.com/w20/hn.png"
+            },
+            { 
+                country: "Panamá", 
+                events: 14, 
+                injured: 336, 
+                affected: null, 
+                deaths: 74,
+                population: 4468087,
+                flag: "https://flagcdn.com/w20/pa.png"
+            },
+            { 
+                country: "Guatemala", 
+                events: 16, 
+                injured: 54, 
+                affected: 994221, 
+                deaths: 145,
+                population: 18092026,
+                flag: "https://flagcdn.com/w20/gt.png"
+            },
+            { 
+                country: "Nicaragua", 
+                events: 22, 
+                injured: 18, 
+                affected: 387719, 
+                deaths: 148,
+                population: 7046311,
+                flag: "https://flagcdn.com/w20/ni.png"
+            },
+            { 
+                country: "El Salvador", 
+                events: 9, 
+                injured: 0, 
+                affected: 306332, 
+                deaths: 119,
+                population: 6364943,
+                flag: "https://flagcdn.com/w20/sv.png"
+            },
+            { 
+                country: "Belize", 
+                events: 1, 
+                injured: 0, 
+                affected: 38000, 
+                deaths: 1,
+                population: 410825,
+                flag: "https://flagcdn.com/w20/bz.png"
+            }
+        ];
+
+        // Drought Data
+        const droughtEvents = [
+            { country: "Guatemala", year: "2009", type: "El Niño (Food shortage)", affected: 2500000 },
+            { country: "Honduras", year: "2014–2015", type: "Food shortage", affected: 2023000 },
+            { country: "Guatemala", year: "2014–2016", type: "Unspecified", affected: 1300000 },
+            { country: "Guatemala", year: "2018–2019", type: "Unspecified", affected: 1500000 },
+            { country: "Costa Rica", year: "2019", type: "El Niño (unspecified)", affected: 1500000 }
+        ];
+
+        // Initialize charts
+        const floodCtx = document.getElementById('floodChart').getContext('2d');
+        const floodScatterCtx = document.getElementById('floodScatterChart').getContext('2d');
+        const floodPieCtx = document.getElementById('floodPieChart').getContext('2d');
+        const historicalCtx = document.getElementById('historicalTrendsChart').getContext('2d');
+
+        const countryColors = [
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(75, 192, 192, 0.7)',
+            'rgba(255, 159, 64, 0.7)',
+            'rgba(153, 102, 255, 0.7)',
+            'rgba(255, 205, 86, 0.7)',
+            'rgba(201, 203, 207, 0.7)'
+        ];
+
+        const borderColors = countryColors.map(color => color.replace('0.7', '1'));
+
+        // Flood chart (bar chart)
+        const floodChart = new Chart(floodCtx, {
+            type: 'bar',
+            data: {
+                labels: floodData.map(c => c.country),
+                datasets: [{
+                    label: 'Total Events',
+                    data: floodData.map(c => c.events),
+                    backgroundColor: countryColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const country = floodData[context.dataIndex];
+                                return [
+                                    `Events: ${country.events}`,
+                                    `Deaths: ${country.deaths}`,
+                                    `Affected: ${country.affected ? country.affected.toLocaleString() : 'NA'}`,
+                                    `Injured: ${country.injured}`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Flood scatter chart
+        const floodScatterChart = new Chart(floodScatterCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Countries',
+                    data: floodData.filter(c => c.affected).map(c => ({
+                        x: c.affected,
+                        y: c.deaths,
+                        country: c.country
+                    })),
+                    backgroundColor: countryColors,
+                    borderColor: borderColors,
+                    borderWidth: 1,
+                    pointRadius: 8,
+                    pointHoverRadius: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const point = context.raw;
+                                return [
+                                    `Country: ${point.country}`,
+                                    `Affected: ${point.x.toLocaleString()}`,
+                                    `Deaths: ${point.y}`
+                                ];
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Affected Population'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return (value / 1000000).toFixed(1) + 'M';
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Total Deaths'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Flood pie chart
+        const floodPieChart = new Chart(floodPieCtx, {
+            type: 'pie',
+            data: {
+                labels: floodData.map(c => c.country),
+                datasets: [{
+                    data: floodData.map(c => c.events),
+                    backgroundColor: countryColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.raw;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${context.label}: ${value} events (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Historical trends chart
+        const historicalTrendsChart = new Chart(historicalCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2001', '2009', '2014-2015', '2014-2016', '2018-2019', '2019'],
+                datasets: [
+                    {
+                        label: 'Affected Population (millions)',
+                        data: [1.2, 2.5, 2.023, 1.3, 1.5, 1.5],
+                        backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Major Events',
+                        data: [3, 1, 2, 1, 2, 1],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        type: 'line',
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Affected Population (millions)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Major Events Count'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Filter buttons functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update chart based on selected metric
+                const metric = this.getAttribute('data-metric');
+                let label, data;
+                
+                switch(metric) {
+                    case 'events':
+                        label = 'Total Events';
+                        data = floodData.map(c => c.events);
+                        break;
+                    case 'deaths':
+                        label = 'Total Deaths';
+                        data = floodData.map(c => c.deaths);
+                        break;
+                    case 'affected':
+                        label = 'Affected Population';
+                        data = floodData.map(c => c.affected || 0);
+                        break;
+                }
+                
+                floodChart.data.datasets[0].label = label;
+                floodChart.data.datasets[0].data = data;
+                floodChart.update();
+            });
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.remove('hidden');
+            });
+        });
+
+        // Add animation to cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {threshold: 0.1});
+
+        document.querySelectorAll('.card-hover').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+
+
+
+
+
+
+
+        <!-- Platforms Tab Content -->
+        <div id="platforms-tab" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">GEOGLOWS Platform Links</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/cr.png" alt="Costa Rica" class="country-flag">
+                            <h3 class="font-medium">Costa Rica</h3>
+                        </div>
+                        <a href="https://ice.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">ice.geoglows.org</a>
+                    </div>
+                    <div class="border rounded-lg p-4 ">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/hn.png" alt="Honduras" class="country-flag">
+                            <h3 class="font-medium">Honduras</h3>
+                        </div>
+                        <a href="https://enee.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">enee.geoglows.org</a>
+                    </div>
+                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/pa.png" alt="Panamá" class="country-flag">
+                            <h3 class="font-medium">Panamá</h3>
+                        </div>
+                        <a href="https://imhpa.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">imhpa.geoglows.org</a>
+                    </div>
+                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/gt.png" alt="Guatemala" class="country-flag">
+                            <h3 class="font-medium">Guatemala</h3>
+                        </div>
+                        <a href="https://ineter.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">ineter.geoglows.org</a>
+                    </div>
+                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/ni.png" alt="Nicaragua" class="country-flag">
+                            <h3 class="font-medium">Nicaragua</h3>
+                        </div>
+                        <a href="https://insivumeh.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">insivumeh.geoglows.org</a>
+                    </div>
+                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/sv.png" alt="El Salvador" class="country-flag">
+                            <h3 class="font-medium">El Salvador</h3>
+                        </div>
+                        <a href="https://marn.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">marn.geoglows.org</a>
+                    </div>
+                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <img src="https://flagcdn.com/w20/bz.png" alt="Belize" class="country-flag">
+                            <h3 class="font-medium">Belize</h3>
+                        </div>
+                        <a href="https://mnr-belize.geoglows.org/" target="_blank" class="text-blue-600 hover:underline break-all">mnr-belize.geoglows.org</a>
+                    </div>
+                </div>
+            </div>
+
+
+       <!-- Apps Tab Content -->
+        <div id="apps-tab" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Customization Apps</h2>
+                
+                <div class="space-y-4">
+                    <div class="border rounded-lg overflow-hidden">
+                        <button class="app-toggle w-full flex items-center justify-between p-4 bg-blue-50 hover:bg-blue-100 transition-colors">
+                            <div class="flex items-center">
+                                <i class="fas fa-water text-blue-500 text-xl mr-4"></i>
+                                <span class="font-medium">Hydroviewer</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-blue-500 transition-transform"></i>
+                        </button>
+                        <div class="app-details p-4 bg-white">
+                            <p class="text-gray-700 mb-3">
+                                The GEOGLOWS River Forecasting System provides global streamflow forecasts by combining weather predictions from the European Centre for Medium-Range Weather Forecasts (ECMWF) with hydrological modeling.
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Offers daily ensemble forecasts up to 15 days in advance</li>
+                                <li>Provides over 80 years of historical simulated streamflow data for approximately 7 million river reaches worldwide</li>
+                                <li>Especially valuable in data-scarce regions</li>
+                                <li>Enables users to monitor river conditions, analyze trends, and plan for flood and drought events</li>
+                                <li>Forecasts can be accessed through the interactive GEOGLOWS Hydroviewer</li>
+                                <li>Available via APIs and GIS platforms like Esri's Living Atlas</li>
+                                <li>Supports decision-making in water resource management and disaster preparedness</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border rounded-lg overflow-hidden">
+                        <button class="app-toggle w-full flex items-center justify-between p-4 bg-green-50 hover:bg-green-100 transition-colors">
+                            <div class="flex items-center">
+                                <i class="fas fa-tint text-green-500 text-xl mr-4"></i>
+                                <span class="font-medium">GRACE Groundwater</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-green-500 transition-transform"></i>
+                        </button>
+                        <div class="app-details p-4 bg-white">
+                            <p class="text-gray-700 mb-3">
+                                The GRACE Groundwater Subsetting Tool (GGST) is an open-source web application designed to make satellite-based groundwater data from NASA's GRACE mission accessible and usable, especially for stakeholders in regions with limited technical capacity.
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Allows users to view and analyze changes in groundwater storage over time</li>
+                                <li>Derived from total water storage anomalies using a mass balance approach with supporting GLDAS land surface model data</li>
+                                <li>Intuitive interface enables both global and regional analyses</li>
+                                <li>Users can visualize time-series graphs, download data, and assess trends in aquifer depletion or recharge</li>
+                                <li>Features include animated maps, shapefile uploads for regional focus, and built-in uncertainty estimates</li>
+                                <li>Provides a powerful decision-support tool for sustainable groundwater management</li>
+                                <li>Particularly valuable in data-scarce or transboundary regions, where traditional groundwater monitoring is challenging or nonexistent</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border rounded-lg overflow-hidden">
+                        <button class="app-toggle w-full flex items-center justify-between p-4 bg-purple-50 hover:bg-purple-100 transition-colors">
+                            <div class="flex items-center">
+                                <i class="fas fa-server text-purple-500 text-xl mr-4"></i>
+                                <span class="font-medium">HydroServer</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-purple-500 transition-transform"></i>
+                        </button>
+                        <div class="app-details p-4 bg-white">
+                            <p class="text-gray-700 mb-3">
+                                HydroServer is an open-source, modular platform designed for the collection, management, and sharing of hydrologic time series data from environmental monitoring sites.
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Includes a user-friendly web interface for managing monitoring sites, variables, and metadata</li>
+                                <li>Provides tools for data ingestion and visualization</li>
+                                <li>Important for flood forecasting and early warning systems</li>
+                                <li>Enables timely dissemination of critical information to vulnerable communities</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border rounded-lg overflow-hidden">
+                        <button class="app-toggle w-full flex items-center justify-between p-4 bg-yellow-50 hover:bg-yellow-100 transition-colors">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marked-alt text-yellow-500 text-xl mr-4"></i>
+                                <span class="font-medium">Flood Maps</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-yellow-500 transition-transform"></i>
+                        </button>
+                        <div class="app-details p-4 bg-white">
+                            <p class="text-gray-700 mb-3">
+                                The flood maps represent the extent and depth of water under different flow scenarios, using open-source tools and geospatial data.
+                            </p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Created through a raster-based modeling approach</li>
+                                <li>Uses ARC (Automated Rating Curve) and Curve2Flood software</li>
+                                <li>ARC calculates rating curves for each point along the river network based on topographic data (DEM), land use, and Manning's roughness coefficients</li>
+                                <li>Curve2Flood uses these curves, along with target flow values, to quickly produce flood inundation maps</li>
+                                <li>Requires basic inputs such as a digital elevation model, river network raster, flow data, and land use maps</li>
+                                <li>Unlike traditional hydrodynamic models, this approach delivers useful results more efficiently and with fewer data requirements</li>
+                                <li>Particularly valuable in data-scarce regions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <!-- GEOGLOWS Impact by Country -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8">GEOGLOWS Impact by Country</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">Potential Impact</h3>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Honduras</span>
+                                <span class="text-gray-600">⭐⭐⭐⭐ Extremely High</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Almost no stations, many rivers – GEOGLOWS fills big gaps</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Nicaragua</span>
+                                <span class="text-gray-600">⭐⭐⭐ High</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Few stations, big river network – GEOGLOWS can expand coverage</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Guatemala</span>
+                                <span class="text-gray-600">⭐⭐ Medium</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Some stations but many rivers – can boost early warnings</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Panama</span>
+                                <span class="text-gray-600">⭐⭐ Medium</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Moderate coverage – useful for rural/coastal areas</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Belize</span>
+                                <span class="text-gray-600">⭐ Low</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Good coverage – GEOGLOWS adds extra support</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">El Salvador</span>
+                                <span class="text-gray-600">⭐ Low</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Very good station network – GEOGLOWS helps improve reliability</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Costa Rica</span>
+                                <span class="text-gray-600">⭐ Low</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Best coverage – GEOGLOWS enhances existing systems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">Implementation Timeline</h3>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <i class="fas fa-calendar-alt text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Phase I</h4>
+                                <p class="text-sm text-gray-600">3 meetings and 1 survey</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <i class="fas fa-users text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Phase II</h4>
+                                <p class="text-sm text-gray-600">1 meeting and 1 survey</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <i class="fas fa-graduation-cap text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Phase III</h4>
+                                <p class="text-sm text-gray-600">2 meetings, 1 training for each app and 1 training to manage portal</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">
+                                <i class="fas fa-check-circle text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Phase IV</h4>
+                                <p class="text-sm text-gray-600">Final meeting, 1 survey and optional monthly follow-up</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-medium text-gray-900 mb-2">Time Investment</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <p class="text-sm text-blue-800 font-medium">GEOGLOWS Hours</p>
+                                <p class="text-xl font-bold">60+</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <p class="text-sm text-green-800 font-medium">NHS Hours</p>
+                                <p class="text-xl font-bold">28+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+        <!-- Services Packages-->
+        <div id="services-tab" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">GEOGLOWS Aquaveo Service Package</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="service-card bg-blue-50 p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-100 text-blue-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Training Packages</h3>
+                        </div>
+                        <p class="text-gray-700 mb-3">Equip your team with the skills needed to manage and operate the GEOGLOWS Portal effectively.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                                <span>Portal Installation, Deployment & Maintenance Training (4 days): <span class="font-bold">$12,000</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                                <span>Portal Basics: Administration & Applications Training (4 days): <span class="font-bold">$12,000</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card bg-green-50 p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Technical Support</h3>
+                        </div>
+                        <p class="text-gray-700 mb-3">Ensure a smooth setup and receive expert assistance when you need it most.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Initial Portal Deployment Support (1 portal): <span class="font-bold">$2,600</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>General Technical Support (40 hours): <span class="font-bold">$6,000</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card bg-purple-50 p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-100 text-purple-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Maintenance Options</h3>
+                        </div>
+                        <p class="text-gray-700 mb-3">Choose the maintenance plan that fits your hosting setup.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                                <span>Hosted by Aquaveo (1 year): <span class="font-bold">$6,000</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                                <span>Self-Hosted or Third-Party Hosted (1 year): <span class="font-bold">$9,000</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card bg-yellow-50 p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-yellow-100 text-yellow-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Cloud Hosting Services</h3>
+                        </div>
+                        <p class="text-gray-700 mb-3">Reliable cloud solutions for GEOGLOWS applications.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                                <span>GEOGLOWS Portal Hosting (1 year): <span class="font-bold">$4,500</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                                <span>Hydroserver Hosting (1 year): <span class="font-bold">$5,500</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card bg-red-50 p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-red-100 text-red-600 p-2 rounded-full mr-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Custom Development</h3>
+                        </div>
+                        <p class="text-gray-700 mb-3">Tailor the GEOGLOWS Portal to your specific needs.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mt-1 mr-2"></i>
+                                <span>Portal & App Customizations: <span class="font-bold">$160/hour</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-100 p-5 rounded-lg">
+                    <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                        <i class="fas fa-info-circle mr-2"></i> Important Note
+                    </h3>
+                    <p class="text-blue-800">
+                        Hosting with Aquaveo requires a maintenance agreement (e.g., GEOGLOWS Portal hosting + maintenance = $10,500/year).
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 rounded-xl shadow-inner p-6">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-6">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-3">Flexible Access</h2>
+                        <p class="text-gray-700 mb-4">
+                            Choosing one of our service packages is entirely optional. Users can still access and benefit from the GEOGLOWS services without purchasing any training, support, or hosting options.
+                        </p>
+                        <p class="text-gray-700">
+                            <i class="fas fa-bullseye text-blue-500 mr-2"></i>
+                            Our goal is to support the global community in making informed, data-driven water management decisions — regardless of your budget or package selection.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-bold text-gray-800 mb-3"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Key Insights</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">
+                                        <i class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                    <span>Guatemala has the highest affected population at nearly 1 million</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">
+                                        <i class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                    <span>Honduras has the highest death count despite fewer events</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">
+                                        <i class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                    <span>Nicaragua has the most disaster events recorded</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   <!-- Main Content -->
+   <main class="container mx-auto px-4 py-8">
+       <!-- PRODUCTS: Country Links Section -->
+       <section class="mb-12">
+           <div class="flex items-center justify-between mb-6">
+               <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                   <i class="fas fa-link mr-3 text-blue-600"></i> Country Platform Links
+               </h2>
+               <div class="flex items-center space-x-2">
+                   <span class="text-sm text-gray-500">Last updated: Today</span>
+                   <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm hover:bg-blue-200">
+                       <i class="fas fa-sync-alt mr-1"></i> Refresh
+                   </button>
+               </div>
+           </div>
+          
+           <div class="bg-white rounded-xl shadow-md overflow-hidden">
+               <div class="overflow-x-auto">
+                   <table class="overflow-x-auto" class="min-w-full divide-y divide-gray-200">
+                       <thead class="bg-gray-50">
+                           <tr>
+                               <th class="text-sm" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Country</th>
+                               <th class="text-sm" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Platform Link</th>
+                               
+                               
+                           </tr>
+                       </thead>
+                       <tbody class="bg-white divide-y divide-gray-200">
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/cr.png" alt="Costa Rica">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">Costa Rica</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://ice.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://ice.geoglows.org/</a>
+                               </td>
+
+
+
+
+                           </tr>
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/hn.png" alt="Honduras">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">Honduras</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://enee.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://enee.geoglows.org/</a>
+                               </td>
+                             
+                           </tr>
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/pa.png" alt="Panamá">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">Panamá</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://imhpa.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://imhpa.geoglows.org/</a>
+                               </td>
+
+                           </tr>
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/gt.png" alt="Guatemala">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">Guatemala</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://ineter.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://insivumeh.geoglows.org/</a>
+                               </td>
+
+                           </tr>
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/ni.png" alt="Nicaragua">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">Nicaragua</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://insivumeh.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://ineter.geoglows.org/</a>
+                               </td>
+ 
+                           </tr>
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/sv.png" alt="El Salvador">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">El Salvador</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://marn.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://marn.geoglows.org/</a>
+                               </td>
+
+                           </tr>
+                           <tr>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <div class="flex items-center">
+                                       <div class="flex-shrink-0 h-10 w-10">
+                                           <img class="h-10 w-10 rounded-full" src="https://flagcdn.com/w20/bz.png" alt="Belize">
+                                       </div>
+                                       <div class="ml-4">
+                                           <div class="text-sm font-medium text-gray-900">Belize</div>
+                                       </div>
+                                   </div>
+                               </td>
+                               <td class="text-sm" class="px-6 py-4 whitespace-nowrap">
+                                   <a href="https://mnr-belize.geoglows.org/" class="text-blue-600 hover:text-blue-800">https://mnr-belize.geoglows.org/</a>
+                               </td>
+ 
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </section>
+
+
+       <!-- Applications Section -->
+       <section class="mb-12">
+           <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+               <i class="fas fa-cubes mr-3 text-blue-600"></i> Customization Apps
+           </h2>
+          
+           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+               <!-- Hydroviewer Card -->
+               <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                   <div class="p-6">
+                       <div class="flex items-center mb-4">
+                           <div class="bg-blue-100 p-3 rounded-full mr-4">
+                               <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                           </div>
+                           <h3 class="text-lg font-bold text-gray-800">Hydroviewer</h3>
+                       </div>
+                       <p class="text-gray-600 text-sm mb-4">
+                           The GEOGLOWS River Forecasting System provides global streamflow forecasts by combining weather predictions with hydrological modeling.
+                       </p>
+                       <div class="flex justify-between items-center">
+                           <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Forecasting</span>
+                           <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                               Learn More <i class="fas fa-chevron-right ml-1"></i>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+              
+               <!-- GRACE Card -->
+               <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                   <div class="p-6">
+                       <div class="flex items-center mb-4">
+                           <div class="bg-green-100 p-3 rounded-full mr-4">
+                               <i class="fas fa-tint text-green-600 text-xl"></i>
+                           </div>
+                           <h3 class="text-lg font-bold text-gray-800">GRACE Groundwater</h3>
+                       </div>
+                       <p class="text-gray-600 text-sm mb-4">
+                           An open-source web application designed to make satellite-based groundwater data from NASA's GRACE mission accessible.
+                       </p>
+                       <div class="flex justify-between items-center">
+                           <span class="text-xs font-medium px-2 py-1 bg-green-100 text-green-800 rounded-full">Monitoring</span>
+                           <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                               Learn More <i class="fas fa-chevron-right ml-1"></i>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+              
+               <!-- Groundwater Mapping Card -->
+               <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                   <div class="p-6">
+                       <div class="flex items-center mb-4">
+                           <div class="bg-purple-100 p-3 rounded-full mr-4">
+                               <i class="fas fa-map-marked-alt text-purple-600 text-xl"></i>
+                           </div>
+                           <h3 class="text-lg font-bold text-gray-800">Groundwater Mapping</h3>
+                       </div>
+                       <p class="text-gray-600 text-sm mb-4">
+                           Helps water managers assess aquifer sustainability by estimating groundwater storage changes using MLR and Kriging.
+                       </p>
+                       <div class="flex justify-between items-center">
+                           <span class="text-xs font-medium px-2 py-1 bg-purple-100 text-purple-800 rounded-full">Analysis</span>
+                           <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                               Learn More <i class="fas fa-chevron-right ml-1"></i>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+              
+               <!-- HydroServer Card -->
+               <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                   <div class="p-6">
+                       <div class="flex items-center mb-4">
+                           <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                               <i class="fas fa-server text-yellow-600 text-xl"></i>
+                           </div>
+                           <h3 class="text-lg font-bold text-gray-800">HydroServer</h3>
+                       </div>
+                       <p class="text-gray-600 text-sm mb-4">
+                           An open-source, modular platform for the collection, management, and sharing of hydrologic time series data.
+                       </p>
+                       <div class="flex justify-between items-center">
+                           <span class="text-xs font-medium px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">Data</span>
+                           <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                               Learn More <i class="fas fa-chevron-right ml-1"></i>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+              
+               <!-- Flood Maps Card -->
+               <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                   <div class="p-6">
+                       <div class="flex items-center mb-4">
+                           <div class="bg-red-100 p-3 rounded-full mr-4">
+                               <i class="fas fa-flood text-red-600 text-xl"></i>
+                           </div>
+                           <h3 class="text-lg font-bold text-gray-800">Flood Maps</h3>
+                       </div>
+                       <p class="text-gray-600 text-sm mb-4">
+                           Represent the extent and depth of water under different flow scenarios using open-source tools and geospatial data.
+                       </p>
+                       <div class="flex justify-between items-center">
+                           <span class="text-xs font-medium px-2 py-1 bg-red-100 text-red-800 rounded-full">Risk</span>
+                           <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                               Learn More <i class="fas fa-chevron-right ml-1"></i>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+ 
+<!-- Time Allocation & Implementation Timeline -->
+<div class="bg-white rounded-xl shadow-md p-6">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+    <i class="fas fa-clock mr-3 text-blue-600"></i> Time Allocation & Implementation
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Activity Breakdown -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Activity Hours</h3>
+      <div class="space-y-3">
+        <div class="flex justify-between">
+          <span class="text-sm font-medium text-gray-600">Meetings</span>
+          <span class="text-sm text-blue-800 font-bold">14 <span class="text-gray-500 ml-2">7</span></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-sm font-medium text-gray-600">Trainings</span>
+          <span class="text-sm text-blue-800 font-bold">40 <span class="text-gray-500 ml-2">20</span></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-sm font-medium text-gray-600">Surveys</span>
+          <span class="text-sm text-blue-800 font-bold">4 <span class="text-gray-500 ml-2">1</span></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-sm font-medium text-gray-600">Portals</span>
+          <span class="text-sm text-blue-800 font-bold">2 <span class="text-gray-500 ml-2">0</span></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-sm font-medium text-gray-600">Follow-Up</span>
+          <span class="text-sm text-blue-800 font-bold">2/month <span class="text-gray-500 ml-2">1/month</span></span>
+        </div>
+      </div>
+
+      <!-- Total Hours -->
+      <div class="mt-6 grid grid-cols-2 gap-4">
+        <div class="bg-blue-50 p-4 rounded-lg text-center">
+          <p class="text-sm font-medium text-gray-600">GEOGLOWS</p>
+          <p class="text-2xl font-bold text-blue-700">60+2</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-lg text-center">
+          <p class="text-sm font-medium text-gray-600">NHS</p>
+          <p class="text-2xl font-bold text-gray-700">28+1</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Phases -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Implementation Timeline</h3>
+      <div class="space-y-6">
+        <div class="flex items-start">
+          <i class="fas fa-calendar-alt text-blue-600 mr-3 mt-1"></i>
+          <div>
+            <h4 class="font-medium text-gray-800">Phase I</h4>
+            <p class="text-sm text-gray-600">3 meetings and 1 survey</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <i class="fas fa-users text-blue-600 mr-3 mt-1"></i>
+          <div>
+            <h4 class="font-medium text-gray-800">Phase II</h4>
+            <p class="text-sm text-gray-600">1 meeting and 1 survey</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <i class="fas fa-graduation-cap text-blue-600 mr-3 mt-1"></i>
+          <div>
+            <h4 class="font-medium text-gray-800">Phase III</h4>
+            <p class="text-sm text-gray-600">2 meetings, 1 training per app, 1 portal training</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+          <div>
+            <h4 class="font-medium text-gray-800">Phase IV</h4>
+            <p class="text-sm text-gray-600">Final meeting, 1 survey, and monthly follow-up</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+       <!-- Service Packages Section -->
+       <section>
+           <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+               <i class="fas fa-cog mr-3 text-blue-600"></i> GEOGLOWS Aquaveo Service Package
+           </h2>
+          
+           <div class="bg-white rounded-xl shadow-md overflow-hidden">
+               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+                   <!-- Training Package -->
+                   <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition duration-300">
+                       <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                           <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                       </div>
+                       <h3 class="text-lg font-bold text-gray-800 mb-2">Training Packages</h3>
+                       <p class="text-gray-600 text-sm mb-4">
+                           Equip your team with the skills needed to manage and operate the GEOGLOWS Portal effectively.
+                       </p>
+                       <ul class="text-sm text-gray-700 space-y-2 mb-4">
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>Portal Installation, Deployment & Maintenance Training (4 days): $12,000</span>
+                           </li>
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>Portal Basics: Administration & Applications Training (4 days): $12,000</span>
+                           </li>
+                       </ul>
+                   </div>
+                  
+                   <!-- Technical Support -->
+                   <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition duration-300">
+                       <div class="bg-green-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                           <i class="fas fa-headset text-green-600 text-xl"></i>
+                       </div>
+                       <h3 class="text-lg font-bold text-gray-800 mb-2">Technical Support</h3>
+                       <p class="text-gray-600 text-sm mb-4">
+                           Ensure a smooth setup and receive expert assistance when you need it most.
+                       </p>
+                       <ul class="text-sm text-gray-700 space-y-2 mb-4">
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>Initial Portal Deployment Support (1 portal): $2,600</span>
+                           </li>
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>General Technical Support (40 hours): $6,000</span>
+                           </li>
+                       </ul>
+                   </div>
+                  
+                   <!-- Maintenance Options -->
+                   <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition duration-300">
+                       <div class="bg-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                           <i class="fas fa-tools text-purple-600 text-xl"></i>
+                       </div>
+                       <h3 class="text-lg font-bold text-gray-800 mb-2">Maintenance Options</h3>
+                       <p class="text-gray-600 text-sm mb-4">
+                           Choose the maintenance plan that fits your hosting setup.
+                       </p>
+                       <ul class="text-sm text-gray-700 space-y-2 mb-4">
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>Hosted by Aquaveo (1 year): $6,000</span>
+                           </li>
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>Self-Hosted or Third-Party Hosted (1 year): $9,000</span>
+                           </li>
+                       </ul>
+                   </div>
+                  
+                   <!-- Cloud Hosting -->
+                   <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition duration-300">
+                       <div class="bg-yellow-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                           <i class="fas fa-cloud text-yellow-600 text-xl"></i>
+                       </div>
+                       <h3 class="text-lg font-bold text-gray-800 mb-2">Cloud Hosting</h3>
+                       <p class="text-gray-600 text-sm mb-4">
+                           Reliable cloud solutions for GEOGLOWS applications.
+                       </p>
+                       <ul class="text-sm text-gray-700 space-y-2 mb-4">
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>GEOGLOWS Portal Hosting (1 year): $4,500</span>
+                           </li>
+                           <li class="flex items-start">
+                               <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                               <span>Hydroserver Hosting (1 year): $5,500</span>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+              
+               <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
+                   <div class="flex flex-col md:flex-row items-center justify-between">
+                       <div class="mb-4 md:mb-0">
+                           <h3 class="font-medium text-gray-800 mb-1">Flexible Access</h3>
+                           <p class="text-sm text-gray-600">
+                               Choosing a service package is optional. Users can still access GEOGLOWS services without purchasing any package.
+                           </p>
+                       </div>
+                       <button class="bg-blue-600 hover:bg-blue-700 text-gray-800 px-4 py-2 rounded-lg font-medium transition duration-300">
+                           Contact Sales <i class="fas fa-arrow-right ml-2"></i>
+                       </button>
+                   </div>
+               </div>
+           </div>
+       </section>
+   </main>
+
+  
+
+</body>
+</html>
+
+
+
+
+<!-- Footer -->
+<footer class="bg-blue-800 text-gray-800 rounded-lg shadow-md p-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+            <h3 class="text-xl font-bold mb-2">More about GEOGLOWS</h3>
+            <p class="text-blue-200">Visit our websites for more information</p>
+        </div>
+        <div class="flex space-x-4">
+            <a href="https://stories.geoglows.org/" class="text-blue-200 hover:text-gray-800" target="_blank" title="GEOGLOWS Stories">
+                <i class="fa-solid fa-book-open text-xl"></i>
+            </a>
+            <a href="https://hydroviewer.geoglows.org/#lon=10.00&lat=18.00&zoom=3.00&definition=" class="text-blue-200 hover:text-gray-800" target="_blank" title="Hydroviewer GEOGLOWS">
+                <i class="fas fa-globe text-xl"></i>
+            </a>
+            <a href="https://training.geoglows.org/" class="text-blue-200 hover:text-gray-800" target="_blank" title="GEOGLOWS Training Platform">
+                <i class="fas fa-graduation-cap text-xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="mt-6 pt-4 border-t border-blue-700 text-center text-blue-200 text-sm">
+        <p>© 2025 https://www.geoglows.org/ </p>
+    </div>
+</footer>
+
+</footer>
+
